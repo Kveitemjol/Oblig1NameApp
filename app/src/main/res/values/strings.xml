@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Name App</string>
+    <string name="btn_showPic">Show pictures</string>
+    <string name="btn_showNz">Show names</string>
+    <string name="btn_startQz">Start quiz</string>
+    <string name="btn_addPerson">Add new person</string>
+    <string name="btn_home">Home</string>
+    <string name="editText_name">Name:</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_cam">Open Camera</string>
+    <string name="btn_quit">Quit</string>
+    <string name="btn_next">Next</string>
+    <string name="text_guess">Name...</string>
+    <string name="text_result">Result</string>
+
+</resources>

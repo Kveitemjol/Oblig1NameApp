@@ -1,0 +1,78 @@
+package com.example.birger.mainmenuactivity;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.provider.MediaStore;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class AddNewPerson extends AppCompatActivity {
+
+    private EditText editText_name;
+    private static final String TAG = "logger";
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    private ImageView mImageView;
+    private Bitmap imageBitmap;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_new_person);
+
+        mImageView = (ImageView) findViewById(R.id.imageView_NewPerson);
+        editText_name = (EditText) findViewById(R.id.editText_Name);
+    }
+
+    public void addPerson (View view) {
+        String name = editText_name.getText().toString();
+
+        try {
+            FileOutputStream stream = openFileOutput(name, Context.MODE_PRIVATE);
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            stream.close();
+            imageBitmap.recycle();
+
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "Finner ikke filen");
+        } catch (IOException e) {
+            Log.e(TAG, "IO Feil");
+        }
+
+        Intent result = new Intent(this, MainMenuActivity.class);
+        result.putExtra("name", name);
+        setResult(Activity.RESULT_OK, result);
+
+        finish();
+    }
+
+    public void toHome (View view) {
+        finish();
+    }
+
+    public void dispatchTakePictureIntent(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            mImageView.setImageBitmap(imageBitmap);
+        }
+    }
+}
