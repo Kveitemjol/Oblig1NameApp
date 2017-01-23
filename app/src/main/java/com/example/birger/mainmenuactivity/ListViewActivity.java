@@ -21,7 +21,7 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        //References
+        //Referencest
         personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
         ListView listView = (ListView) findViewById(R.id.list);
 
