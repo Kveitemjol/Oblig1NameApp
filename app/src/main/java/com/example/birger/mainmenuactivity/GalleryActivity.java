@@ -17,11 +17,14 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
-        personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
 
+        //References
+        personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
         GridView grid = (GridView) findViewById(R.id.gridView);
+
         grid.setAdapter(new ImageAdapter(this, personList));
 
+        //Clickable image in the Gallery
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -32,6 +35,7 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
+    //Home button
     public void toHome (View view) {
         finish();
     }

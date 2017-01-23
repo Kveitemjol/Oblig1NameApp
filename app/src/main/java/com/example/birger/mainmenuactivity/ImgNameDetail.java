@@ -20,11 +20,11 @@ public class ImgNameDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_img_name_detail);
-        Bitmap bmp;
 
+        //References
+        Bitmap bmp;
         TextView textViewName = (TextView) findViewById(R.id.textView_ImageDetail);
         ImageView imageView = (ImageView) findViewById(R.id.imageView_ImageDetail);
-
         String name = (String) getIntent().getStringExtra("name");
 
         textViewName.setText(name);

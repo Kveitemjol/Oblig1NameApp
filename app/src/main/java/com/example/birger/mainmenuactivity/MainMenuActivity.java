@@ -20,6 +20,7 @@ public class MainMenuActivity extends AppCompatActivity {
         personList = new ArrayList<>();
     }
 
+    //From menu, when clicking buttons go to one of these methods
     public void toNameList(View v) {
         Intent intent = new Intent(this, ListViewActivity.class);
         intent.putExtra("personList", personList);

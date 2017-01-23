@@ -29,14 +29,16 @@ public class AddNewPerson extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_person);
 
+        //References
         mImageView = (ImageView) findViewById(R.id.imageView_NewPerson);
         editText_name = (EditText) findViewById(R.id.editText_Name);
     }
 
+    //Add person with image and name
     public void addPerson (View view) {
         String name = editText_name.getText().toString();
 
-        try {
+       try {
             FileOutputStream stream = openFileOutput(name, Context.MODE_PRIVATE);
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
 
@@ -56,16 +58,19 @@ public class AddNewPerson extends AppCompatActivity {
         finish();
     }
 
+    //Home button
     public void toHome (View view) {
         finish();
     }
 
+    //Take photo with camera
     public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

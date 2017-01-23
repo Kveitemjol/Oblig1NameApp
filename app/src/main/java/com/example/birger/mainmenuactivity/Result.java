@@ -12,16 +12,18 @@ public class Result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        //References
         TextView rightText = (TextView) findViewById(R.id.text_right);
         TextView wrongText = (TextView) findViewById(R.id.text_wrong);
-
         int right = getIntent().getIntExtra("right", 0);
         int wrong = getIntent().getIntExtra("wrong", 0);
 
+        //Information about quiz results
         rightText.setText("Right guesses = " + Integer.toString(right));
         wrongText.setText("Wrong guesses = " + Integer.toString(wrong));
     }
 
+    //Home button
     public void toHome(View view){
         finish();
     }

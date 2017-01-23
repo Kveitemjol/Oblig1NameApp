@@ -33,8 +33,8 @@ public class LearningModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning_mode);
 
+        //References (+ variables)
         personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
-
         imageView = (ImageView) findViewById(R.id.imageView_learningMode);
         editText = (EditText) findViewById(R.id.editText_guessName);
         next = (Button) findViewById(R.id.btnNext);
@@ -43,6 +43,7 @@ public class LearningModeActivity extends AppCompatActivity {
         antallFeil = 0;
         antallRiktige = 0;
 
+        //Start the quiz when clicking "Start" button
         next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 game();
@@ -50,6 +51,7 @@ public class LearningModeActivity extends AppCompatActivity {
         });
     }
 
+    //Play quiz
     private void game(){
 
         Random r = new Random();
@@ -79,6 +81,7 @@ public class LearningModeActivity extends AppCompatActivity {
         }
     }
 
+    //Show result when quitting the quiz
     public void toResult (View view) {
         Intent intent = new Intent(this, Result.class);
         intent.putExtra("right", antallRiktige);

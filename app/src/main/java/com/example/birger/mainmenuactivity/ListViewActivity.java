@@ -14,30 +14,34 @@ public class ListViewActivity extends AppCompatActivity {
 
     ArrayList<String> personList;
     private static String TAG = "logger";
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
+        //References
         personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
-
         ListView listView = (ListView) findViewById(R.id.list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1,(ArrayList) personList);
+
+        //Adapter to list the names in listView layout
+        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1,(ArrayList) personList);
         listView.setAdapter(adapter);
 
+        //Names in the list are clickable and shows picture
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), ImgNameDetail.class);
                 intent.putExtra("name", personList.get(position));
-
                 startActivity(intent);
             }
         });
 
     }
 
+    //Home button
     public void toHome (View view) {
         finish();
     }

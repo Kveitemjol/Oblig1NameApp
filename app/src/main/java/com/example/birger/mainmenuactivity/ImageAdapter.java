@@ -39,9 +39,12 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+
         ImageView imageView;
         Bitmap bmp;
+
         if (convertView == null) {
+            
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -50,6 +53,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
         String navn = personList.get(position);
+
         try {
             FileInputStream is = mContext.openFileInput(navn);
             bmp = BitmapFactory.decodeStream(is);
