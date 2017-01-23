@@ -45,9 +45,11 @@ public class AddNewPerson extends AppCompatActivity {
             stream.close();
             imageBitmap.recycle();
 
-        } catch (FileNotFoundException e) {
+        }
+       catch (FileNotFoundException e) {
             Log.e(TAG, "Finner ikke filen");
-        } catch (IOException e) {
+        }
+       catch (IOException e) {
             Log.e(TAG, "IO Feil");
         }
 
