@@ -58,7 +58,6 @@ public class LearningModeActivity extends AppCompatActivity {
 
         Random r = new Random();
         int randomInt = r.nextInt(personList.size());
-        editText.setText("");
         next.setText("Next");
         editText.setVisibility(View.VISIBLE);
 
@@ -71,19 +70,27 @@ public class LearningModeActivity extends AppCompatActivity {
             bmp = BitmapFactory.decodeStream(is);
             imageView.setImageBitmap(bmp);
             is.close();
+
         } catch (FileNotFoundException e) {
             Log.e(TAG, "Finner ikke filen");
         } catch (IOException e) {
             Log.e(TAG, "IO Feil");
         }
 
+        Log.i(TAG, "Text: " + text);
+        Log.i(TAG, "Name: " + name);
+
         if(text.toLowerCase().equals(name.toLowerCase())){
             antallRiktige++;
+        }
+        else if(text.toLowerCase().isEmpty()) {
+                //Do nothing, so that number of wrong answers is not incremeted
         } else {
             antallFeil++;
         }
+        editText.setText("");
     }
-
+    
     //Show result when quitting the quiz
     public void toResult (View view) {
         Intent intent = new Intent(this, Result.class);
