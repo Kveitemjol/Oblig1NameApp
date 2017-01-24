@@ -58,7 +58,7 @@ public class LearningModeActivity extends AppCompatActivity {
 
         Random r = new Random();
         int randomInt = r.nextInt(personList.size());
-        editText.setText("");
+        editText.setText("rudi");
         next.setText("Next");
         editText.setVisibility(View.VISIBLE);
 
@@ -76,6 +76,8 @@ public class LearningModeActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.e(TAG, "IO Feil");
         }
+
+        Log.i(TAG, name + " " + text);
 
         if(text.toLowerCase().equals(name.toLowerCase())){
             antallRiktige++;

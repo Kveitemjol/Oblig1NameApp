@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Oblig1NameApp.iml" filepath="$PROJECT_DIR$/Oblig1NameApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Oblig1NameAppFix.iml" filepath="$PROJECT_DIR$/Oblig1NameAppFix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Oblig1NameAppFixed.iml" filepath="$PROJECT_DIR$/Oblig1NameAppFixed.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
