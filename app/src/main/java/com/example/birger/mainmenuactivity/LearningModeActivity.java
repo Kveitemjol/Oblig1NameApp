@@ -58,6 +58,7 @@ public class LearningModeActivity extends AppCompatActivity {
 
         Random r = new Random();
         int randomInt = r.nextInt(personList.size());
+        editText.setText("");
         next.setText("Next");
         editText.setVisibility(View.VISIBLE);
 
@@ -80,7 +81,8 @@ public class LearningModeActivity extends AppCompatActivity {
         Log.i(TAG, "Text: " + text);
         Log.i(TAG, "Name: " + name);
 
-        if(text.toLowerCase().equals(name.toLowerCase())){
+        //Compare name and text an count numbers of right and wrong answers
+        if(name.toLowerCase().equals(text.toLowerCase())){
             antallRiktige++;
         }
         else if(text.toLowerCase().isEmpty()) {
@@ -90,7 +92,7 @@ public class LearningModeActivity extends AppCompatActivity {
         }
         editText.setText("");
     }
-    
+
     //Show result when quitting the quiz
     public void toResult (View view) {
         Intent intent = new Intent(this, Result.class);
