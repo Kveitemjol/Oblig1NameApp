@@ -23,6 +23,9 @@ public class ImageAdapter extends BaseAdapter {
     ArrayList<String> personList;
     private static final String TAG = "LOGG: ";
 
+    public ImageAdapter() {
+    }
+
     public ImageAdapter (Context c, ArrayList<String> personList) {
         mContext = c;
         this.personList = personList;
