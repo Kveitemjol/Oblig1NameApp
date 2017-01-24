@@ -77,9 +77,11 @@ public class LearningModeActivity extends AppCompatActivity {
             Log.e(TAG, "IO Feil");
         }
 
+        //Log name and text to compare them
         Log.i(TAG, name + " " + text);
 
-        if(text.toLowerCase().equals(name.toLowerCase())){
+        //Compare name and text an count numbers of right and wrong answers
+        if(name.toLowerCase().equals(text.toLowerCase())){
             antallRiktige++;
         } else {
             antallFeil++;

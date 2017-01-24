@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnNext"
             android:text="@string/btn_next"
-            android:onClick=""
+            android:onClick="game"
             android:layout_weight="0.5"/>
     </LinearLayout>
 
