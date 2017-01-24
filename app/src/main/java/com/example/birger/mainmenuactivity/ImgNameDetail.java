@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class ImgNameDetail extends AppCompatActivity {
 
-    private static final String TAG = "logger";
+    private static final String TAG = "LOGG: ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +25,12 @@ public class ImgNameDetail extends AppCompatActivity {
         Bitmap bmp;
         TextView textViewName = (TextView) findViewById(R.id.textView_ImageDetail);
         ImageView imageView = (ImageView) findViewById(R.id.imageView_ImageDetail);
-        String name = (String) getIntent().getStringExtra("name");
 
+        //The name is passed with intent and use the reference to set the name of the person
+        String name = getIntent().getStringExtra("name");
         textViewName.setText(name);
 
+        //Get data from file/internally
         try {
             FileInputStream is = this.openFileInput(name);
             bmp = BitmapFactory.decodeStream(is);

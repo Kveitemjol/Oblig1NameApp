@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ListViewActivity extends AppCompatActivity {
 
     ArrayList<String> personList;
-    private static String TAG = "logger";
+    private static String TAG = "LOGG: ";
     ArrayAdapter<String> adapter;
 
     @Override
@@ -21,15 +21,15 @@ public class ListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
-        //Referencest
+        //References
         personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
         ListView listView = (ListView) findViewById(R.id.list);
 
-        //Adapter to list the names in listView layout
+        //Adapter that pulls content from the array and converts each item result into a view that's placed into the list
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, android.R.id.text1,(ArrayList) personList);
         listView.setAdapter(adapter);
 
-        //Names in the list are clickable and shows picture
+        //Names in the list are clickable, pass intent with the personList data. Starts the ImgNameDetail activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -19,7 +19,7 @@ import java.io.IOException;
 public class AddNewPerson extends AppCompatActivity {
 
     private EditText editText_name;
-    private static final String TAG = "logger";
+    private static final String TAG = "LOGG: ";
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView mImageView;
     private Bitmap imageBitmap;
@@ -38,6 +38,7 @@ public class AddNewPerson extends AppCompatActivity {
     public void addPerson (View view) {
         String name = editText_name.getText().toString();
 
+       //Write information internally
        try {
             FileOutputStream stream = openFileOutput(name, Context.MODE_PRIVATE);
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
@@ -73,7 +74,7 @@ public class AddNewPerson extends AppCompatActivity {
         }
     }
 
-
+    //onActivityResult when startActivityForResult for camera intent has ended
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {

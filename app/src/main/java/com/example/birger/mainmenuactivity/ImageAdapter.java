@@ -17,9 +17,11 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends BaseAdapter {
 
+    //Class to show gallery in Grid View layout.
+
     private Context mContext;
     ArrayList<String> personList;
-    private static final String TAG = "logger";
+    private static final String TAG = "LOGG: ";
 
     public ImageAdapter (Context c, ArrayList<String> personList) {
         mContext = c;
@@ -38,11 +40,13 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
+    //Create new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ImageView imageView;
         Bitmap bmp;
 
+        //If not recycled...
         if (convertView == null) {
             
             imageView = new ImageView(mContext);
@@ -54,6 +58,7 @@ public class ImageAdapter extends BaseAdapter {
         }
         String navn = personList.get(position);
 
+        //Get data from file/internally
         try {
             FileInputStream is = mContext.openFileInput(navn);
             bmp = BitmapFactory.decodeStream(is);

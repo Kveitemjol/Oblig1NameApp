@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class LearningModeActivity extends AppCompatActivity {
 
-    private static final String TAG = "logger";
+    private static final String TAG = "LOGG: ";
     ArrayList<String> personList;
     Bitmap bmp;
     Button next;
@@ -33,13 +33,15 @@ public class LearningModeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning_mode);
 
-        //References (+ variables)
+        //References
         personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
         imageView = (ImageView) findViewById(R.id.imageView_learningMode);
         editText = (EditText) findViewById(R.id.editText_guessName);
         next = (Button) findViewById(R.id.btnNext);
+
         next.setText("Start");
         editText.setVisibility(View.INVISIBLE);
+
         antallFeil = 0;
         antallRiktige = 0;
 
@@ -63,6 +65,7 @@ public class LearningModeActivity extends AppCompatActivity {
         String name = personList.get(randomInt);
         String text = editText.getText().toString();
 
+        //Get data from file/internally to display image
         try {
             FileInputStream is = this.openFileInput(name);
             bmp = BitmapFactory.decodeStream(is);
