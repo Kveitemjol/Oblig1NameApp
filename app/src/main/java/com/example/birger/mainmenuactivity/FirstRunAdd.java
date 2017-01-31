@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -37,6 +38,12 @@ public class FirstRunAdd extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Override and do nothing to prevent user going to main menu
+
+        Context context = getApplicationContext();
+        CharSequence text = "Oops! Nothing to go back to.";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast.makeText(context, text, duration).show();
     }
 
     public void addPerson (View view) {

@@ -24,7 +24,6 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        personList = new ArrayList<>();
         prefs = getSharedPreferences("MainMenuActivity", 0);
 
         if(prefs.contains("nameArray")) {
@@ -48,12 +47,13 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
-    //From menu, when clicking buttons go to one of these methods
+    //From menu, when clicking buttons go to one of these activities
     public void toNameList(View v) {
         Intent intent = new Intent(this, ListViewActivity.class);
         intent.putExtra("personList", personList);
         startActivity(intent);
     }
+    
     public void toGallery(View v) {
         Intent intent = new Intent(this, GalleryActivity.class);
         intent.putExtra("personList", personList);
