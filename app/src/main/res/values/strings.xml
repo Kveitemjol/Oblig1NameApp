@@ -12,6 +12,6 @@
     <string name="btn_next">Next</string>
     <string name="text_guess">Name...</string>
     <string name="text_result">Result</string>
-    <string name="pref_previously_started"/>
+    <string name="btn_quitAndSave">Save and Quit</string>
 
 </resources>

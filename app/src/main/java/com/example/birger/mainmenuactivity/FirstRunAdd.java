@@ -24,7 +24,6 @@ public class FirstRunAdd extends AppCompatActivity {
     private ImageView mImageViewFirst;
     private Bitmap imageBitmap;
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    SharedPreferences shp = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +34,10 @@ public class FirstRunAdd extends AppCompatActivity {
         mImageViewFirst = (ImageView) findViewById(R.id.imageView_FirstNewPerson);
     }
 
+    @Override
+    public void onBackPressed() {
+        //Override and do nothing to prevent user going to main menu
+    }
 
     public void addPerson (View view) {
         String name = editTextName.getText().toString();

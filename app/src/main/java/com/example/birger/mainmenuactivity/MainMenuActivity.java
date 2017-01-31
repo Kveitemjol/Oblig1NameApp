@@ -3,10 +3,8 @@ package com.example.birger.mainmenuactivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ShareActionProvider;
 import android.util.Log;
 import android.view.View;
 
@@ -15,41 +13,38 @@ import java.util.Arrays;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    private static final String TAG = "logger";
-    String filename = "names";
-
+    private static final String TAG ="LOGG:";
     ArrayList<String> personList;
     static final int ADD_NEW_PERSON = 1;
+    SharedPreferences prefs = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(getSharedPreferences("MainMenuActivity", 0).contains("nameArray")) {
+        personList = new ArrayList<>();
+        prefs = getSharedPreferences("MainMenuActivity", 0);
+
+        if(prefs.contains("nameArray")) {
             SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
             String namesString = sharedPref.getString("nameArray", null);
-            String [] namesArray = namesString.split(",");
-            personList = new ArrayList<String>(Arrays.asList(namesArray));
+            String[] namesArray = namesString.split(",");
+            personList = new ArrayList<>(Arrays.asList(namesArray));
         } else {
-            personList = new ArrayList<String>();
+            personList = new ArrayList<>();
         }
     }
 
-    //For adding owner of app when the app is started for the first time,
-    //does not work properly yet
     @Override
     protected void onResume() {
         super.onResume();
-        setContentView(R.layout.activity_main);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
-        if(!previouslyStarted) {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started), Boolean.TRUE);
-            edit.commit();
-            //showHelp();
+        if (prefs.getBoolean("firstrun", true) && !prefs.contains("nameArray")) {
+            Intent intent = new Intent(this, FirstRunAdd.class);
+            startActivityForResult(intent, ADD_NEW_PERSON);
+            prefs.edit().putBoolean("firstrun", false).commit();
         }
     }
 
@@ -59,15 +54,12 @@ public class MainMenuActivity extends AppCompatActivity {
         intent.putExtra("personList", personList);
         startActivity(intent);
     }
-
-    //start gallery activity
     public void toGallery(View v) {
         Intent intent = new Intent(this, GalleryActivity.class);
         intent.putExtra("personList", personList);
         startActivity(intent);
     }
 
-    //start Quiz activity
     public void toQuiz(View v) {
         Intent intent = new Intent(this, LearningModeActivity.class);
         intent.putExtra("personList", personList);
@@ -90,7 +82,11 @@ public class MainMenuActivity extends AppCompatActivity {
                 //Bundle to get data that has been passed
                 Bundle extras = data.getExtras();
                 String name = (String) extras.get("name");
-                personList.add(name);
+                if(name.trim().isEmpty()) {
+                    //Nothing...
+                } else {
+                    personList.add(name);
+                }
             }
         }
     }
@@ -111,7 +107,6 @@ public class MainMenuActivity extends AppCompatActivity {
         Log.i(TAG, "her");
     }
 
-    //when quiting activity
     public void quit(View view){
         finish();
     }
