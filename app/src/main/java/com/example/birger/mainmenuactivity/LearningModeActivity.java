@@ -86,7 +86,7 @@ public class LearningModeActivity extends AppCompatActivity {
             antallRiktige++;
         }
         else if(text.toLowerCase().isEmpty()) {
-                //Do nothing, so that number of wrong answers is not incremeted
+                //Do nothing, so that number of wrong answers is not incremented
         } else {
             antallFeil++;
         }

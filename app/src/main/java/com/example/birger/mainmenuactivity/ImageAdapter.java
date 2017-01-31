@@ -15,9 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//Class to show gallery in Grid View layout.
 public class ImageAdapter extends BaseAdapter {
-
-    //Class to show gallery in Grid View layout.
 
     private Context mContext;
     ArrayList<String> personList;
