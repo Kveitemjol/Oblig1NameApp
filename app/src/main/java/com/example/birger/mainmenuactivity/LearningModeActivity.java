@@ -58,7 +58,7 @@ public class LearningModeActivity extends AppCompatActivity {
 
         Random r = new Random();
         int randomInt = r.nextInt(personList.size());
-        editText.setText("");
+
         next.setText("Next");
         editText.setVisibility(View.VISIBLE);
 
