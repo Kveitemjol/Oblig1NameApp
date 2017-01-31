@@ -16,6 +16,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private static final String TAG ="LOGG:";
     ArrayList<String> personList;
     static final int ADD_NEW_PERSON = 1;
+    SharedPreferences prefs = null;
 
 
     @Override
@@ -23,6 +24,19 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        personList = new ArrayList<>();
+        prefs = getSharedPreferences("com.example.birger.mainmenuactivity", Context.MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            Intent intent = new Intent(this, FirstRunAdd.class);
+            startActivityForResult(intent, ADD_NEW_PERSON);
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
         if(getSharedPreferences("MainMenuActivity", 0).contains("nameArray")) {
             SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
             String namesString = sharedPref.getString("nameArray", null);
