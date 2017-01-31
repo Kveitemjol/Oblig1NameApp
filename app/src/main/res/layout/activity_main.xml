@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnNames"
         android:onClick="toNameList"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.20" />
 
     <Button
         android:text="@string/btn_showPic"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnPics"
         android:onClick="toGallery"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.20" />
 
     <Button
         android:text="@string/btn_startQz"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnQuiz"
         android:onClick="toQuiz"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.20" />
 
     <Button
         android:text="@string/btn_addPerson"
@@ -43,5 +43,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnAddPerson"
         android:onClick="toAddPerson"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.20" />
+
+    <Button
+        android:text="@string/btn_quitAndSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnQuit"
+        android:onClick="quit"
+        android:layout_weight="0.20"/>
 </LinearLayout>

@@ -1,23 +1,36 @@
 package com.example.birger.mainmenuactivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    private static final String TAG ="LOGG:";
     ArrayList<String> personList;
     static final int ADD_NEW_PERSON = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        personList = new ArrayList<>();
+        if(getSharedPreferences("MainMenuActivity", 0).contains("nameArray")) {
+            SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            String namesString = sharedPref.getString("nameArray", null);
+            String[] namesArray = namesString.split(",");
+            personList = new ArrayList<>(Arrays.asList(namesArray));
+        } else {
+            personList = new ArrayList<>();
+        }
     }
 
     //From menu, when clicking buttons go to one of these methods
@@ -57,5 +70,25 @@ public class MainMenuActivity extends AppCompatActivity {
                 personList.add(name);
             }
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        SharedPreferences sharedpref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpref.edit();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < personList.size(); i++) {
+            sb.append(personList.get(i)).append(",");
+        }
+        editor.putString("nameArray", sb.toString());
+        editor.commit();
+        Log.i(TAG, "her");
+    }
+
+    public void quit(View view){
+        finish();
     }
 }
