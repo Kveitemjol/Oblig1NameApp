@@ -27,9 +27,13 @@ public class CheckButtons {
 
     @Test
     public void checkButtons() {
+
+        // If its the first time the app runs
+        /*
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.btn_addFirstPerson), withText("Add"), isDisplayed()));
         appCompatButton.perform(click());
+        */
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.btnNames), withText("Show names"),
