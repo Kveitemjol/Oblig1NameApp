@@ -53,7 +53,7 @@ public class MainMenuActivity extends AppCompatActivity {
         intent.putExtra("personList", personList);
         startActivity(intent);
     }
-    
+
     public void toGallery(View v) {
         Intent intent = new Intent(this, GalleryActivity.class);
         intent.putExtra("personList", personList);
