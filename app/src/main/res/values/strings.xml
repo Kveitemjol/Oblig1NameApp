@@ -13,5 +13,6 @@
     <string name="text_guess">Name...</string>
     <string name="text_result">Result</string>
     <string name="btn_quitAndSave">Save and Quit</string>
+    <string name="editText_FirstRunInfo">First time run</string>
 
 </resources>

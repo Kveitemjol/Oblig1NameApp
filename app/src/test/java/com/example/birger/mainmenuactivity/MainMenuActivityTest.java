@@ -1,18 +1,13 @@
 package com.example.birger.mainmenuactivity;
 
-import android.os.Bundle;
-import android.view.View;
+import android.content.SharedPreferences;
 
-import com.example.birger.mainmenuactivity.MainMenuActivity;
-
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
-import static android.support.test.espresso.*;
+
 
 /**
  * Created by espensteine on 31/01/2017.
@@ -20,6 +15,8 @@ import static android.support.test.espresso.*;
 public class MainMenuActivityTest {
 
     ArrayList<String> personList = new ArrayList<String>();
+    static final int ADD_NEW_PERSON = 1;
+    SharedPreferences prefs = null;
 
     @Test
     public void onCreate() throws Exception {
@@ -32,7 +29,7 @@ public class MainMenuActivityTest {
 
     @Test
     public void toNameList() throws Exception {
-        View view =
+
     }
 
     @Test
@@ -50,19 +47,20 @@ public class MainMenuActivityTest {
 
     }
 
+    int requestCode;
     @Test
     public void onActivityResult() throws Exception {
-
+        assertTrue(requestCode == ADD_NEW_PERSON);
     }
 
     @Test
     public void onStop() throws Exception {
-
+        assertTrue(personList.contains(','));
     }
 
     @Test
     public void quit() throws Exception {
-        //assertThat(finish(), is true);
+
     }
 
 }
