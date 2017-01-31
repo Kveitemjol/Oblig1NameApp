@@ -1,6 +1,8 @@
 package com.example.birger.mainmenuactivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +13,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     ArrayList<String> personList;
     static final int ADD_NEW_PERSON = 1;
+    SharedPreferences prefs = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,18 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         personList = new ArrayList<>();
+        prefs = getSharedPreferences("com.example.birger.mainmenuactivity", Context.MODE_PRIVATE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true)) {
+            Intent intent = new Intent(this, FirstRunAdd.class);
+            startActivityForResult(intent, ADD_NEW_PERSON);
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
     }
 
     //From menu, when clicking buttons go to one of these methods
