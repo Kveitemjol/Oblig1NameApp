@@ -24,8 +24,13 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        personList = new ArrayList<>();
         prefs = getSharedPreferences("MainMenuActivity", 0);
+
+        if (prefs.getBoolean("firstrun", true) && !prefs.contains("nameArray")) {
+            Intent intent = new Intent(this, FirstRunAdd.class);
+            startActivityForResult(intent, ADD_NEW_PERSON);
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
 
         if(prefs.contains("nameArray")) {
             SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
@@ -37,9 +42,11 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
-    @Override
+/*   @Override
     protected void onResume() {
         super.onResume();
+
+        prefs = getSharedPreferences("MainMenuActivity", Context.MODE_PRIVATE);
 
         if (prefs.getBoolean("firstrun", true) && !prefs.contains("nameArray")) {
             Intent intent = new Intent(this, FirstRunAdd.class);
@@ -48,7 +55,9 @@ public class MainMenuActivity extends AppCompatActivity {
         }
     }
 
-    //From menu, when clicking buttons go to one of these methods
+    */
+
+    //From menu, when clicking buttons go to one of these activities
     public void toNameList(View v) {
         Intent intent = new Intent(this, ListViewActivity.class);
         intent.putExtra("personList", personList);
@@ -83,7 +92,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 Bundle extras = data.getExtras();
                 String name = (String) extras.get("name");
                 if(name.trim().isEmpty()) {
-                    //Nothing...
+                    Log.i(TAG, "Name empty.");
                 } else {
                     personList.add(name);
                 }
