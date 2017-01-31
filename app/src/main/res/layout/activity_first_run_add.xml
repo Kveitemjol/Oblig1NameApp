@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_firstCam"
+            android:onClick="dispatchTakePictureIntent"
             android:layout_weight="0.5" />
 
         <Button
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_addFirstPerson"
+            android:onClick="addPerson"
             android:layout_weight="0.5" />
 
     </LinearLayout>

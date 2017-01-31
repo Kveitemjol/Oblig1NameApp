@@ -33,9 +33,6 @@ public class FirstRunAdd extends AppCompatActivity {
 
         editTextName = (EditText) findViewById(R.id.editText_first);
         mImageViewFirst = (ImageView) findViewById(R.id.imageView_FirstNewPerson);
-
-        shp = getSharedPreferences("com.example.birger.FirstRunAdd", MODE_PRIVATE);
-        shp.edit();
     }
 
 
@@ -70,6 +67,16 @@ public class FirstRunAdd extends AppCompatActivity {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    //onActivityResult when startActivityForResult for camera intent has ended
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            imageBitmap = (Bitmap) extras.get("data");
+            mImageViewFirst.setImageBitmap(imageBitmap);
         }
     }
 

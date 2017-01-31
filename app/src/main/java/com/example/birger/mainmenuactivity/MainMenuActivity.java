@@ -25,25 +25,26 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         personList = new ArrayList<>();
-        prefs = getSharedPreferences("com.example.birger.mainmenuactivity", Context.MODE_PRIVATE);
-    }
+        prefs = getSharedPreferences("MainMenuActivity", 0);
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (prefs.getBoolean("firstrun", true)) {
-            Intent intent = new Intent(this, FirstRunAdd.class);
-            startActivityForResult(intent, ADD_NEW_PERSON);
-            prefs.edit().putBoolean("firstrun", false).commit();
-        }
-        if(getSharedPreferences("MainMenuActivity", 0).contains("nameArray")) {
+        if(prefs.contains("nameArray")) {
             SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
             String namesString = sharedPref.getString("nameArray", null);
             String[] namesArray = namesString.split(",");
             personList = new ArrayList<>(Arrays.asList(namesArray));
         } else {
             personList = new ArrayList<>();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (prefs.getBoolean("firstrun", true) && !prefs.contains("nameArray")) {
+            Intent intent = new Intent(this, FirstRunAdd.class);
+            startActivityForResult(intent, ADD_NEW_PERSON);
+            prefs.edit().putBoolean("firstrun", false).commit();
         }
     }
 
@@ -81,7 +82,11 @@ public class MainMenuActivity extends AppCompatActivity {
                 //Bundle to get data that has been passed
                 Bundle extras = data.getExtras();
                 String name = (String) extras.get("name");
-                personList.add(name);
+                if(name.trim().isEmpty()) {
+                    //Nothing...
+                } else {
+                    personList.add(name);
+                }
             }
         }
     }
