@@ -18,6 +18,7 @@ public class MainMenuActivity extends AppCompatActivity {
     static final int ADD_NEW_PERSON = 1;
     SharedPreferences prefs = null;
 
+    //Faen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
