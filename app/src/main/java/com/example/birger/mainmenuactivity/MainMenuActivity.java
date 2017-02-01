@@ -34,7 +34,10 @@ public class MainMenuActivity extends AppCompatActivity {
         } else {
             personList = new ArrayList<>();
         }
+
+        personList.add("Rudi");
     }
+
 
     @Override
     protected void onResume() {
@@ -46,6 +49,7 @@ public class MainMenuActivity extends AppCompatActivity {
             prefs.edit().putBoolean("firstrun", false).commit();
         }
     }
+
 
     //From menu, when clicking buttons go to one of these activities
     public void toNameList(View v) {

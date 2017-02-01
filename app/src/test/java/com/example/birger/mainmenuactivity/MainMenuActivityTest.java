@@ -1,6 +1,8 @@
 package com.example.birger.mainmenuactivity;
 
+import android.app.Instrumentation;
 import android.content.SharedPreferences;
+import android.widget.Button;
 
 import org.junit.Test;
 
