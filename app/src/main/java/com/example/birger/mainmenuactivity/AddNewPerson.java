@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AddNewPerson extends AppCompatActivity {
 
@@ -23,6 +24,8 @@ public class AddNewPerson extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView mImageView;
     private Bitmap imageBitmap;
+    String pName;
+    //ArrayList<String> personList = (ArrayList<String>) getIntent().getSerializableExtra("personList");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,34 @@ public class AddNewPerson extends AppCompatActivity {
         mImageView = (ImageView) findViewById(R.id.imageView_NewPerson);
         editText_name = (EditText) findViewById(R.id.editText_Name);
     }
+
+    //Method for built-in-pictures (Doesn't work??)
+/*
+    public void addBuiltInPersons(String name, Bitmap imgUser) {
+        pName = name;
+        imageBitmap = imgUser;
+
+        //Write information internally
+        try {
+            FileOutputStream stream = this.openFileOutput(pName, Context.MODE_PRIVATE);
+            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            stream.close();
+            imageBitmap.recycle();
+
+        }
+        catch (FileNotFoundException e) {
+            Log.e(TAG, "Finner ikke filen");
+        }
+        catch (IOException e) {
+            Log.e(TAG, "IO Feil");
+        }
+
+        personList.add(pName);
+
+    }
+
+    */
 
     //Add person with image and name
     public void addPerson (View view) {

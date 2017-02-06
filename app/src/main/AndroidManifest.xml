@@ -22,7 +22,7 @@
         <activity android:name=".LearningModeActivity" />
         <activity android:name=".Result" />
         <activity android:name=".ImageAdapter" />
-        <activity android:name=".FirstRunAdd"></activity>
+        <activity android:name=".FirstRunAdd" />
     </application>
 
 </manifest>
