@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -26,16 +29,24 @@ public class MainMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Bitmap imgRudi = BitmapFactory.decodeResource(getResources(), R.drawable.rudi);
+        Bitmap imgEspen = BitmapFactory.decodeResource(getResources(), R.drawable.espen);
+        Bitmap imgBirger = BitmapFactory.decodeResource(getResources(), R.drawable.birger);
+
         myPrefs = getSharedPreferences("MainMenuActivity", 0);
 
+        //Get stored String representation from Shared Preferences
         if (myPrefs.contains("nameArray")) {
             SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+            //Retrieve a String value from the preferences
             String namesString = sharedPref.getString("nameArray", null);
             String[] namesArray = namesString.split(",");
             personList = new ArrayList<>(Arrays.asList(namesArray));
         } else {
             personList = new ArrayList<>();
-            //addToList();
+            addToList("Rudi", imgRudi);
+            addToList("Espen", imgEspen);
+            addToList("Birger", imgBirger);
         }
     }
 
@@ -80,7 +91,7 @@ public class MainMenuActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         //Check which request we're responding to
         if (requestCode == ADD_NEW_PERSON) {
-            //Be sure the request was successfull
+            //Be sure the request was successful
             if (resultCode == RESULT_OK) {
                 //Bundle to get data that has been passed
                 Bundle extras = data.getExtras();
@@ -101,6 +112,7 @@ public class MainMenuActivity extends AppCompatActivity {
         SharedPreferences sharedpref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpref.edit();
 
+        //Create a String representation of the array
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < personList.size(); i++) {
             sb.append(personList.get(i)).append(",");
@@ -110,24 +122,32 @@ public class MainMenuActivity extends AppCompatActivity {
         Log.i(TAG, "her");
     }
 
+
     public void quit(View view) {
         finish();
     }
 
     //Method for built-in-pictures (Doesn't work??)
-    /*
-    public void addToList() {
 
-        Bitmap imgRudi = BitmapFactory.decodeResource(getResources(), R.drawable.rudi);
-        Bitmap imgEspen = BitmapFactory.decodeResource(getResources(), R.drawable.espen);
-        Bitmap imgBirger = BitmapFactory.decodeResource(getResources(), R.drawable.birger);
+    public void addToList(String nameUser, Bitmap imgUser) {
 
-        AddNewPerson persons = new AddNewPerson();
 
-        persons.addBuiltInPersons("Rudi", imgRudi);
-        persons.addBuiltInPersons("Espen", imgEspen);
-        persons.addBuiltInPersons("Birger", imgBirger);
+        try {
+            FileOutputStream stream = this.openFileOutput(nameUser, Context.MODE_PRIVATE);
+            imgUser.compress(Bitmap.CompressFormat.PNG, 100, stream);
+
+            stream.close();
+            imgUser.recycle();
+
+        }
+        catch (FileNotFoundException e) {
+            Log.e(TAG, "Finner ikke filen");
+        }
+        catch (IOException e) {
+            Log.e(TAG, "IO Feil");
+        }
+
+        personList.add(nameUser);
+
     }
-
-    */
 }
