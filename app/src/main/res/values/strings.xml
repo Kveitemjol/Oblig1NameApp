@@ -14,5 +14,6 @@
     <string name="text_result">Result</string>
     <string name="btn_quitAndSave">Save and Quit</string>
     <string name="editText_FirstRunInfo">First time run</string>
+    <string name="btn_skip">Skip!</string>
 
 </resources>

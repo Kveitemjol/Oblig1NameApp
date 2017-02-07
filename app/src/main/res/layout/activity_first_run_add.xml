@@ -26,12 +26,20 @@
         android:layout_alignParentStart="true">
 
         <Button
+            android:text="@string/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_skipStep"
+            android:onClick="toHomeFirst"
+            android:layout_weight="0.33" />
+
+        <Button
             android:text="@string/btn_cam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_firstCam"
             android:onClick="dispatchTakePictureIntent"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.33" />
 
         <Button
             android:text="@string/btn_add"
@@ -39,7 +47,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_addFirstPerson"
             android:onClick="addPerson"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.33" />
+
+
 
     </LinearLayout>
 

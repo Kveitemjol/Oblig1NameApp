@@ -46,6 +46,11 @@ public class FirstRunAdd extends AppCompatActivity {
         Toast.makeText(context, text, duration).show();
     }
 
+    //Home button
+    public void toHomeFirst (View view) {
+        finish();
+    }
+
     public void addPerson (View view) {
         String name = editTextName.getText().toString();
 
