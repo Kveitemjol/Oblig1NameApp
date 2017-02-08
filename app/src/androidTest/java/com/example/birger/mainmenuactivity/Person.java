@@ -54,12 +54,7 @@ public class Person {
 
         pressBack();
 
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.button2), withText("Home"),
-                        withParent(allOf(withId(R.id.linearLayout),
-                                withParent(withId(R.id.activity_add_new_person)))),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
+
 
     }
 
