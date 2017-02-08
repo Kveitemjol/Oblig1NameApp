@@ -56,7 +56,7 @@ public class LearningModeActivity extends AppCompatActivity {
     //Play quiz
     private void game(){
 
-        Random r = new Random();
+        Random r=null;
         int randomInt = r.nextInt(personList.size());
 
         next.setText("Next");
