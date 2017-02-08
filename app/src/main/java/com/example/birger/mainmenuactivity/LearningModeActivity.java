@@ -53,17 +53,33 @@ public class LearningModeActivity extends AppCompatActivity {
         });
     }
 
+    Random r = new Random();
+    int randomInt;
+    String name;
+
     //Play quiz
     private void game(){
 
-        Random r = new Random();
-        int randomInt = r.nextInt(personList.size());
+        String text = editText.getText().toString();
+
+        if(name != null) {
+
+            //Compare name and text an count numbers of right and wrong answers
+            if(name.toLowerCase().equals(text.toLowerCase())){
+                antallRiktige++;
+            }
+            else if(text.toLowerCase().isEmpty()) {
+                //Do nothing, so that number of wrong answers is not incremented
+            } else {
+                antallFeil++;
+            }
+        }
+
+        randomInt = r.nextInt(personList.size());
+        name = personList.get(randomInt);
 
         next.setText("Next");
         editText.setVisibility(View.VISIBLE);
-
-        String name = personList.get(randomInt);
-        String text = editText.getText().toString();
 
         //Get data from file/internally to display image
         try {
@@ -81,15 +97,6 @@ public class LearningModeActivity extends AppCompatActivity {
         Log.i(TAG, "Text: " + text);
         Log.i(TAG, "Name: " + name);
 
-        //Compare name and text an count numbers of right and wrong answers
-        if(name.toLowerCase().equals(text.toLowerCase())){
-            antallRiktige++;
-        }
-        else if(text.toLowerCase().isEmpty()) {
-                //Do nothing, so that number of wrong answers is not incremented
-        } else {
-            antallFeil++;
-        }
         editText.setText("");
     }
 
